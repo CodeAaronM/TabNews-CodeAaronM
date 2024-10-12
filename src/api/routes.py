@@ -804,6 +804,27 @@ def get_Api_Article():
         print(f"Error al procesar la solicitud: {str(e)}")
         return jsonify({'error': 'Error al procesar la solicitud: ' + str(e)}), 500
 
+@api.route('/article/<int:article_id>/category', methods=['PUT'])
+def update_article_category(article_id):
+    request_body = request.get_json()
+
+    if not request_body or 'category_id' not in request_body:
+        return jsonify({'error': 'Category ID is required'}), 400
+
+    category_id = request_body['category_id']
+    article = Article.query.get(article_id)
+
+    if not article:
+        return jsonify({'error': 'Article not found'}), 404
+
+    try:
+        article.category_id = category_id  # Actualiza la categoría del artículo
+        db.session.commit()  # Guarda los cambios en la base de datos
+        return jsonify({'message': f'Article with ID {article_id} updated with new category ID {category_id}'}), 200
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': str(e)}), 500
+
 
 
 
