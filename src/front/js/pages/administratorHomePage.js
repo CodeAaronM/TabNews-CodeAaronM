@@ -33,7 +33,7 @@ export const AdministratorHomePage = () => {
         : store.Articles;
 
     return (
-        <div className="container mt-5">
+        <div className="container-fluid mt-5">
             <h1 className="text-danger">HOMEE privadoo admin</h1>
             <button className="btn btn-primary" onClick={actions.getArticleApiData}>traer datos de api</button>
 
@@ -58,7 +58,7 @@ export const AdministratorHomePage = () => {
                 </div>
             )}
 
-            <div className="row d-flex flex-nowrap my-5" style={{ overflowX: "scroll" }}>
+<div className="row justify-content-evenly my-5">
                 {filteredArticles.map((article, index) => (
                     <CardArticle
                         key={index}

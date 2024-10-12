@@ -51,7 +51,7 @@ export const HomePage = () => {
         : store.Articles;
 
     return (
-        <div className="container mt-5">
+        <div className="container-fluid mt-5">
             <h1 className="text-danger">HomePage</h1>
 
             <div className="my-4">
@@ -104,7 +104,7 @@ export const HomePage = () => {
                 </div>
             )}
 
-            <div className="row d-flex flex-nowrap my-5" style={{ overflowX: "scroll" }}>
+<div className="row justify-content-evenly my-5">
                 {filteredArticles.length > 0 ? (
                     filteredArticles.map((article, index) => (
                         <CardArticle
@@ -119,6 +119,7 @@ export const HomePage = () => {
                             newspaper={article.newspaper}
                             category={article.category}
                             id={article.id}
+                            isAdmin={false}
                         />
                     ))
                 ) : (
