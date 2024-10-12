@@ -31,9 +31,22 @@ export const CardArticle = (props) => {
     setIsCategoryDropdownVisible(false); // Ocultar el menú después de seleccionar
   };
 
+  const handleRedirect = () => {
+    if (props.link) {
+      window.open(props.link, "_blank"); // Abre el link en una nueva pestaña
+    }
+  };
+
   return (
-    <div className="card m-2" style={{ width: "18rem" }}>
-      <img src={props.image || rigoImage} className="card-img-top" alt={props.title} />
+    <div className="card my-4 col-4 p-2" style={{ width: "30%" }}>
+      {/* Al hacer clic en la imagen, redirige al enlace */}
+      <img
+        src={props.image || rigoImage}
+        className="card-img-top"
+        alt={props.title}
+        onClick={handleRedirect}
+        style={{ cursor: "pointer", height:"350px" }} // Cambiar el cursor a "pointer" para indicar que es clicable
+      />
       <div className="card-body">
         {props.isAdmin && (
           <>
@@ -63,15 +76,14 @@ export const CardArticle = (props) => {
             )}
           </>
         )}
-        <h5 className="card-title">title: {props.title}</h5>
+        {/* Al hacer clic en el título, redirige al enlace */}
+        <h5 className="card-title" onClick={handleRedirect} style={{ cursor: "pointer" }}>
+          title: {props.title}
+        </h5>
         <p className="card-text m-0">content: {props.content}</p>
         <p className="card-text m-0">published_date: {props.published_date}</p>
-        <p className="card-text m-0">source: {props.source}</p>
-        <p className="card-text m-0">link: {props.link}</p>
         <p className="card-text m-0">author: {props.author.name}</p>
         <p className="card-text m-0">newspaper: {props.newspaper.name}</p>
-        <p className="card-text m-0">category: {selectedCategory.name}</p>
-        <p className="card-text m-0">id: {props.id}</p>
       </div>
     </div>
   );

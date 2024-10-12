@@ -28,7 +28,6 @@ export const Home = () => {
     return (
         <div className="text-center mt-5">
             <h1 className="text-danger">HOMEE</h1>
-            <button className="btn btn-primary" onClick={() => { actions.getArticleApiData() }}>Traer datos de API</button>
 
             <div className="my-4">
                 <button onClick={() => setShowFilters(!showFilters)} className="btn btn-info">
@@ -52,8 +51,8 @@ export const Home = () => {
                     ))}
                 </div>
             )}
-
-            <div className="row d-flex flex-nowrap my-5" style={{ overflowX: "scroll" }}>
+        
+            <div className="row justify-content-evenly my-5">
                 {filteredArticles.map((article, index) => (
                     <CardArticle
                         key={index}
