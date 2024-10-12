@@ -762,7 +762,7 @@ def get_Api_Article():
             author_name = author_name[:100]  # Asegúrate de no exceder 100 caracteres
 
             # Evitamos crear artículos sin título, descripción o URL
-            if not title or not description or not url:
+            if not title or not description or not url or not url_to_image:
                 print(f"Artículo ignorado por falta de datos: {title}, {description}, {url}")
                 continue
 
