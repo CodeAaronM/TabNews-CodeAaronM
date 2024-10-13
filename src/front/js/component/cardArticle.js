@@ -38,7 +38,7 @@ export const CardArticle = (props) => {
   };
 
   return (
-    <div className="card my-4 col-4 p-2" style={{ width: "30%" }}>
+    <div className="card my-4 col-4 p-2 bg-black" style={{ width: "30%" }}>
       {/* Al hacer clic en la imagen, redirige al enlace */}
       <img
         src={props.image || rigoImage}
@@ -47,7 +47,7 @@ export const CardArticle = (props) => {
         onClick={handleRedirect}
         style={{ cursor: "pointer", height:"350px" }} // Cambiar el cursor a "pointer" para indicar que es clicable
       />
-      <div className="card-body">
+      <div className="card-body text-light">
         {props.isAdmin && (
           <>
             <Link to="/AddArticle">
@@ -78,12 +78,14 @@ export const CardArticle = (props) => {
         )}
         {/* Al hacer clic en el título, redirige al enlace */}
         <h5 className="card-title" onClick={handleRedirect} style={{ cursor: "pointer" }}>
-          title: {props.title}
+           {props.title}
         </h5>
-        <p className="card-text m-0">content: {props.content}</p>
-        <p className="card-text m-0">published_date: {props.published_date}</p>
-        <p className="card-text m-0">author: {props.author.name}</p>
-        <p className="card-text m-0">newspaper: {props.newspaper.name}</p>
+        <p className="card-text m-0"> {props.content}</p>
+        <div className=" row pt-4">
+        <p className="card-text m-0 p-0 fs-6 col fw-light lh-1 align-text-bottom text-secondary">published_date: {props.published_date}</p>
+        <p className="card-text m-0 p-0 fs-6 col fw-light lh-1 align-text-bottom text-secondary">author: {props.author.name}</p>
+        <p className="card-text m-0 p-0 fs-6 col fw-light lh-1 align-text-bottom text-secondary">newspaper: {props.newspaper.name}</p>
+        </div>
       </div>
     </div>
   );

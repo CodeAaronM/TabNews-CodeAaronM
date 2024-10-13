@@ -18,14 +18,14 @@ export const Navbar = () => {
     const isOnAdminPage = location.pathname === "/administratorHomePage";
 
     return (
-        <nav className="navbar navbar-light bg-light">
+        <nav className="navbar navbar-light bg-dark">
             <div className="container">
                 <Link to="/">
-                    <span className="navbar-brand mb-0 h1">TapNews</span>
+                    <span className="navbar-brand mb-0 h1 text-light">TapNews</span>
                 </Link>
                 <div className="ml-auto">
                     <Link to="/login">
-                        <button className="btn btn-primary">Iniciar Sesión</button>
+                        <button className="btn btn-primary bg-purple text-light">Iniciar Sesión</button>
                     </Link>
                     {/* Mostrar el botón "Cerrar Sesión" solo en HomePage y AdministratorHomePage */}
                     {(isOnHomePage || isOnAdminPage) && (

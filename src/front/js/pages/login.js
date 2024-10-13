@@ -24,14 +24,14 @@ const Login = () => {
     };
 
     return (
-        <div className="container mt-5">
-            <h2 className="text-center">Iniciar Sesión</h2>
-            <form onSubmit={handleSubmit} className="mt-4">
+        <div className="container mt-5 bg-black">
+            <h2 className="text-center text-white">Iniciar Sesión</h2>
+            <form onSubmit={handleSubmit} className="mt-4 bg-dark p-4 rounded">
                 <div className="mb-3">
-                    <label htmlFor="email" className="form-label">Correo Electrónico</label>
+                    <label htmlFor="email" className="form-label text-white">Correo Electrónico</label>
                     <input
                         type="email"
-                        className="form-control"
+                        className="form-control bg-dark text-white border-light"
                         id="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -39,10 +39,10 @@ const Login = () => {
                     />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="password" className="form-label">Contraseña</label>
+                    <label htmlFor="password" className="form-label text-white">Contraseña</label>
                     <input
                         type="password"
-                        className="form-control"
+                        className="form-control bg-dark text-white border-light"
                         id="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
@@ -51,9 +51,9 @@ const Login = () => {
                 </div>
                 <button type="submit" className="btn btn-primary">Iniciar Sesión</button>
             </form>
-            <p className="mt-3 text-center">
+            <p className="mt-3 text-center text-white">
                 ¿No tienes una cuenta?{" "}
-                <Link to="/register">Regístrate aquí</Link>
+                <Link to="/register" className="text-info">Regístrate aquí</Link>
             </p>
         </div>
     );

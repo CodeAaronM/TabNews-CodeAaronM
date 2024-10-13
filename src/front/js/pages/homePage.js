@@ -51,21 +51,21 @@ export const HomePage = () => {
         : store.Articles;
 
     return (
-        <div className="container-fluid mt-5">
-            <h1 className="text-danger">HomePage</h1>
+        <div className="container-fluid mt-5 bg-black">
+            <h1 className="text-primary text-center">Noticias Personalizadas</h1>
 
-            <div className="my-4">
+            <div className="my-4 text-center">
                 <button onClick={() => setShowFilters(!showFilters)} className="btn btn-info">
-                    {showFilters ? "Ocultar Filtros" : "Mostrar Filtros"}
+                    {showFilters ? "Ocultar Filtros" : "Filtros"}
                 </button>
 
-                <button onClick={() => setShowPreferences(!showPreferences)} className="btn btn-warning mx-2">
-                    {showPreferences ? "Ocultar Preferencias" : "Seleccionar Preferencias"}
+                <button onClick={() => setShowPreferences(!showPreferences)} className="btn btn-primary mx-2">
+                    {showPreferences ? "Ocultar Preferencias" : "Preferencias"}
                 </button>
             </div>
 
             {showFilters && (
-                <div className="my-4">
+                <div className="my-4 text-center">
                     <button onClick={() => setSelectedCategories([])} className="btn btn-secondary mx-2">
                         Todas
                     </button>
@@ -73,7 +73,7 @@ export const HomePage = () => {
                         <button
                             key={index}
                             onClick={() => handleCategoryChange(category.id)}
-                            className={`btn mx-2 ${selectedCategories.includes(category.id) ? "btn-success" : "btn-primary"}`}
+                            className={`btn mx-2 ${selectedCategories.includes(category.id) ? "btn-primary" : "btn-secondary"}`}
                         >
                             {category.name}
                         </button>
@@ -82,7 +82,7 @@ export const HomePage = () => {
             )}
 
             {showPreferences && (
-                <div className="preferences-modal">
+                <div className="preferences-modal p-4 text-start bg-black text-white">
                     <h3>Selecciona tus categorías preferidas</h3>
                     {store.categories.map((category, index) => (
                         <div key={index} className="form-check">
@@ -104,7 +104,7 @@ export const HomePage = () => {
                 </div>
             )}
 
-<div className="row justify-content-evenly my-5">
+            <div className="row justify-content-evenly my-5">
                 {filteredArticles.length > 0 ? (
                     filteredArticles.map((article, index) => (
                         <CardArticle
@@ -126,12 +126,6 @@ export const HomePage = () => {
                     <p>No se encontraron artículos para las categorías seleccionadas.</p>
                 )}
             </div>
-
-            {store.homepageMessage ? (
-                <p className="mt-4">{store.homepageMessage}</p>
-            ) : (
-                <p>Cargando...</p>
-            )}
         </div>
     );
 };
