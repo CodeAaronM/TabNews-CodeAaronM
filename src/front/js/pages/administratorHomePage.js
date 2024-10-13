@@ -33,10 +33,9 @@ export const AdministratorHomePage = () => {
         : store.Articles;
 
     return (
-        <div className="container-fluid mt-5">
-            <h1 className="text-danger">HOMEE privadoo admin</h1>
+        <div className="container-fluid mt-5 bg-black text-white p-4">
+            <h1 className="text-danger text-center">Administra tus noticias</h1>
             <button className="btn btn-primary" onClick={actions.getArticleApiData}>Traer datos de API</button>
-
 
             <div className="my-4">
                 <button onClick={() => setShowFilters(!showFilters)} className="btn btn-info">
@@ -59,7 +58,7 @@ export const AdministratorHomePage = () => {
                 </div>
             )}
 
-<div className="row justify-content-evenly my-5">
+            <div className="row justify-content-evenly my-5">
                 {filteredArticles.map((article, index) => (
                     <CardArticle
                         key={index}

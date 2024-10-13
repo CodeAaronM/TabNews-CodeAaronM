@@ -26,17 +26,19 @@ export const Home = () => {
         : store.Articles;
 
     return (
-        <div className="text-center mt-5">
-            <h1 className="text-danger">HOMEE</h1>
-
-            <div className="my-4">
-                <button onClick={() => setShowFilters(!showFilters)} className="btn btn-info">
-                    {showFilters ? "Ocultar Filtros" : "Mostrar Filtros"}
-                </button>
+        <div className="container-fluid text-center pt-5 bg-black">
+            <div className="py-4">
+                <h1 className="text-primary">Bienvenido a TapNews</h1>
+                <p className="text-secondary">Explora las últimas noticias a tu manera.</p>
+                <div className="pt-4 text-start">
+                    <button onClick={() => setShowFilters(!showFilters)} className="btn btn-info">
+                        {showFilters ? "Ocultar Filtros" : "Filtros"}
+                    </button>
+                </div>
             </div>
 
             {showFilters && (
-                <div className="my-4">
+                <div className="py-4">
                     <button onClick={() => setSelectedCategories([])} className="btn btn-secondary mx-2">
                         Todas
                     </button>
@@ -51,8 +53,8 @@ export const Home = () => {
                     ))}
                 </div>
             )}
-        
-            <div className="row justify-content-evenly my-5">
+
+            <div className="row justify-content-evenly py-5">
                 {filteredArticles.map((article, index) => (
                     <CardArticle
                         key={index}
@@ -66,7 +68,7 @@ export const Home = () => {
                         newspaper={article.newspaper}
                         category={article.category}
                         id={article.id}
-                        isAdmin={store.userRole === 'admin'} // Comprobar si el usuario es admin
+                        isAdmin={store.userRole === 'admin'}
                     />
                 ))}
             </div>
