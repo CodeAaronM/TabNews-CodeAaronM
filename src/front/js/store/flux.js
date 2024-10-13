@@ -443,20 +443,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getArticleApiData: async () => {
 				try {
-					// Realiza la solicitud al backend usando la URL definida en las variables de entorno
+					// Llamar al endpoint para obtener nuevos datos y eliminar los antiguos
 					const response = await fetch(`${process.env.BACKEND_URL}api/getApiArticle`);
 			
-					// Verifica si la respuesta es exitosa (status 200-299)
 					if (!response.ok) {
 						throw new Error("Error en la solicitud: " + response.statusText);
 					}
 			
-					// Llama a otra función para obtener los datos de los artículos
+					// Una vez se hayan actualizado los datos, recargamos los artículos desde la base de datos
 					getActions().getDataArticle();
 				} catch (error) {
-					console.error("Error al obtener artículos de la API:", error);
+					console.error("Error al obtener datos de la API:", error);
 				}
 			},
+			
 			updateArticleCategory: async (id, categoryId) => {
 				try {
 				  const response = await fetch(`${process.env.BACKEND_URL}api/article/${id}/category`, {

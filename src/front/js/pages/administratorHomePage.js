@@ -35,7 +35,8 @@ export const AdministratorHomePage = () => {
     return (
         <div className="container-fluid mt-5">
             <h1 className="text-danger">HOMEE privadoo admin</h1>
-            <button className="btn btn-primary" onClick={actions.getArticleApiData}>traer datos de api</button>
+            <button className="btn btn-primary" onClick={actions.getArticleApiData}>Traer datos de API</button>
+
 
             <div className="my-4">
                 <button onClick={() => setShowFilters(!showFilters)} className="btn btn-info">
