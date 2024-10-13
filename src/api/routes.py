@@ -735,13 +735,17 @@ def administratorhomepage():
 @api.route('/getApiArticle', methods=['GET'])
 def get_Api_Article():
     try:
+        # Primero eliminamos todos los artículos, autores y periódicos
+        Article.query.delete()  # Eliminar todos los artículos
+        Author.query.delete()  # Eliminar todos los autores
+        Newspaper.query.delete()  # Eliminar todos los periódicos
+        db.session.commit()  # Confirmamos la eliminación de los datos antiguos
+
+        # Luego obtenemos los nuevos datos de la API externa
         response = requests.get('https://newsapi.org/v2/top-headlines', params={
             'country': 'us',
             'apiKey': '53b4cc2189164a09a77e52459edaa684'  # Asegúrate de que la clave sea válida
         })
-
-        print("Estado de la respuesta de la API externa:", response.status_code)
-        print("Contenido de la respuesta de la API externa:", response.text)
 
         if response.status_code != 200:
             return jsonify({'error': 'Error al obtener datos de la API externa'}), 500
@@ -754,32 +758,29 @@ def get_Api_Article():
             url_to_image = article.get('urlToImage')
             published_at = article.get('publishedAt')
             url = article.get('url')
-            
+
             author_name = article.get('author') or 'Desconocido'
             source_name = article.get('source', {}).get('name') or 'Fuente Desconocida'
 
             # Recortar el nombre del autor si es necesario
-            author_name = author_name[:100]  # Asegúrate de no exceder 100 caracteres
+            author_name = author_name[:100]
 
-            # Evitamos crear artículos sin título, descripción o URL
             if not title or not description or not url or not url_to_image:
-                print(f"Artículo ignorado por falta de datos: {title}, {description}, {url}")
                 continue
 
             # Verificar si el autor ya existe en la base de datos
             author = Author.query.filter_by(name=author_name).first()
             if not author:
-                # Aquí no asignamos valores vacíos, sino que dejamos el campo como NULL
-                author = Author(name=author_name, description=None, photo=None)  
+                author = Author(name=author_name)
                 db.session.add(author)
-                db.session.flush()  # Guarda el autor temporalmente para obtener su ID
+                db.session.flush()
 
             # Verificar si el periódico ya existe en la base de datos
             newspaper = Newspaper.query.filter_by(name=source_name).first()
             if not newspaper:
                 newspaper = Newspaper(name=source_name)
                 db.session.add(newspaper)
-                db.session.flush()  # Guarda el periódico temporalmente para obtener su ID
+                db.session.flush()
 
             # Crear el nuevo artículo
             new_article = Article(
@@ -789,20 +790,20 @@ def get_Api_Article():
                 published_date=published_at,
                 source=url,
                 link=url,
-                author_id=author.id,  # Asociar el ID del autor
-                newspaper_id=newspaper.id,  # Asociar el ID del periódico
+                author_id=author.id,
+                newspaper_id=newspaper.id,
                 category_id=1  # Suponiendo que tienes una categoría fija por ahora
             )
 
             db.session.add(new_article)
 
-        db.session.commit()  # Confirmar todos los cambios
-        return jsonify(message="Artículos creados exitosamente"), 201
+        db.session.commit()  # Confirmamos todos los cambios
+        return jsonify(message="Datos actualizados correctamente"), 201
 
     except Exception as e:
-        db.session.rollback()  # Deshacer cambios en caso de error
-        print(f"Error al procesar la solicitud: {str(e)}")
+        db.session.rollback()  # En caso de error, deshacemos cualquier cambio
         return jsonify({'error': 'Error al procesar la solicitud: ' + str(e)}), 500
+
 
 @api.route('/article/<int:article_id>/category', methods=['PUT'])
 def update_article_category(article_id):
