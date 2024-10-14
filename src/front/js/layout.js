@@ -28,6 +28,8 @@ import { AdministratorHomePage } from "./pages/administratorHomePage";
 import { AdministratorProtectedRoute } from "./component/administratorProtectedRoute";
 import AdministratorLogin from "./pages/administratorLogin";
 import AdministratorRegister from "./pages/administratorRegister";
+
+import { Jumbotron } from "./pages/jumbotron";
 //create your first component
 const Layout = () => {
     const basename = process.env.BASENAME || "";
@@ -35,12 +37,14 @@ const Layout = () => {
     if (!process.env.BACKEND_URL || process.env.BACKEND_URL === "") return <BackendURL />;
 
     return (
-        <div className="bg-black">
+        <div className="d-flex flex-column min-vh-100 bg-black">
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
                     <Navbar />
+                    <div className="flex-grow-1">
                     <Routes>
-                        <Route element={<Home />} path="/" />
+                        <Route element={<Home />} path="/home" />
+                        <Route element={<Jumbotron />} path="/" />
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<Category />} path="/category" />
@@ -68,6 +72,7 @@ const Layout = () => {
                         <Route element={<AddNewspaper />} path="/AddNewspaper"/>
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
+                    </div>
                     <Footer />
                 </ScrollToTop>
             </BrowserRouter>
