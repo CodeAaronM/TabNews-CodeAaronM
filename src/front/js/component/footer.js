@@ -1,26 +1,10 @@
 import React, { Component } from "react";
 
 export const Footer = () => (
-	<footer className="footer mt-auto py-3 text-center bg-dark ">
+	<footer className="footer mt-auto py-3 text-center bg-dark">
 		<p className="text-light">
-          Made with 🍑 by
-          <a 
-          href="https://github.com/CoolPenwin" 
-          > 
-            <img
-              className="logo"
-              src="https://avatars.githubusercontent.com/u/171165391?v=4"  
-              style={{
-                border: "1px solid rgb(255, 255, 255)",
-                borderRadius: "50%",
-                width: "40px",
-              }}
-              alt="logo"
-            />
-            CoolPenwin 
-          </a>{" "}
-
-
+          Made by
+          {" "}
           <a 
           href="https://github.com/CodeAaronM" 
           > 
@@ -36,25 +20,8 @@ export const Footer = () => (
             />
             CodeAAron 
           </a>{" "}
-
-
-
-          <a 
-          href="https://github.com/eliasjr89" 
-          > 
-            <img
-              className="logo"
-              src="https://avatars.githubusercontent.com/u/167987056?v=4"  
-              style={{
-                border: "1px solid rgb(255, 255, 255)",
-                borderRadius: "50%",
-                width: "40px",
-              }}
-              alt="logo"
-            />
-            Elías JR 
-          </a>{" "}
           on
+          {" "}
           <a href="https://www.4geeksacademy.com">
             {" "}
             4GeeksAcademy

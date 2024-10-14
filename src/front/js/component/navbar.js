@@ -21,12 +21,9 @@ export const Navbar = () => {
         <nav className="navbar navbar-light bg-dark">
             <div className="container">
                 <Link to="/">
-                    <span className="navbar-brand mb-0 h1 text-light">TapNews</span>
+                    <span className="navbar-brand mb-0 fs-3 text-light"><i className="fa-solid fa-kiwi-bird fs-1"></i>TapNews</span>
                 </Link>
                 <div className="ml-auto">
-                    <Link to="/login">
-                        <button className="btn btn-primary bg-purple text-light">Iniciar Sesión</button>
-                    </Link>
                     {/* Mostrar el botón "Cerrar Sesión" solo en HomePage y AdministratorHomePage */}
                     {(isOnHomePage || isOnAdminPage) && (
                         <button className="btn btn-danger ml-2" onClick={handleLogout}>

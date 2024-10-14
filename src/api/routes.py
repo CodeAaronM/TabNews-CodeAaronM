@@ -735,52 +735,61 @@ def administratorhomepage():
 @api.route('/getApiArticle', methods=['GET'])
 def get_Api_Article():
     try:
-        # Primero eliminamos todos los artículos, autores y periódicos
-        Article.query.delete()  # Eliminar todos los artículos
-        Author.query.delete()  # Eliminar todos los autores
-        Newspaper.query.delete()  # Eliminar todos los periódicos
-        db.session.commit()  # Confirmamos la eliminación de los datos antiguos
-
-        # Luego obtenemos los nuevos datos de la API externa
         response = requests.get('https://newsapi.org/v2/top-headlines', params={
             'country': 'us',
             'apiKey': '53b4cc2189164a09a77e52459edaa684'  # Asegúrate de que la clave sea válida
         })
+
+        print("Estado de la respuesta de la API externa:", response.status_code)
+        print("Contenido de la respuesta de la API externa:", response.text)
 
         if response.status_code != 200:
             return jsonify({'error': 'Error al obtener datos de la API externa'}), 500
 
         data = response.json()
 
-        for article in data['articles']:
-            title = article.get('title')
-            description = article.get('description')
-            url_to_image = article.get('urlToImage')
-            published_at = article.get('publishedAt')
-            url = article.get('url')
+        for article in data.get('articles', []):  # Usar .get para evitar problemas si 'articles' no está
+            title = article.get('title')  # No añadir valor por defecto, validar si es None
+            description = article.get('description')  
+            url_to_image = article.get('urlToImage')  
+            published_at = article.get('publishedAt')  
+            url = article.get('url')  
 
-            author_name = article.get('author') or 'Desconocido'
-            source_name = article.get('source', {}).get('name') or 'Fuente Desconocida'
+            author_name = article.get('author')  # No añadir valor por defecto
+            source_name = article.get('source', {}).get('name')  # No añadir valor por defecto
 
-            # Recortar el nombre del autor si es necesario
-            author_name = author_name[:100]
-
-            if not title or not description or not url or not url_to_image:
+            # Validar que ninguno de estos campos críticos sea None o vacío
+            if not all([title, description, url_to_image, url, author_name, source_name, published_at]):
+                print(f"Artículo ignorado por falta de datos: {article}")
                 continue
+
+            # Limitar los campos a la longitud máxima aceptada por la base de datos
+            title = title[:255]
+            description = description[:65535]
+            url_to_image = url_to_image[:255]
+            url = url[:255]
+            author_name = author_name[:100]
+            source_name = source_name[:255]
+
+            # Verificar si el artículo ya existe en la base de datos (por título y URL)
+            existing_article = Article.query.filter_by(title=title, source=url).first()
+            if existing_article:
+                print(f"Artículo ya existe en la base de datos: {title}")
+                continue  # Saltar si el artículo ya existe
 
             # Verificar si el autor ya existe en la base de datos
             author = Author.query.filter_by(name=author_name).first()
             if not author:
-                author = Author(name=author_name)
+                author = Author(name=author_name, description=None, photo=None)  
                 db.session.add(author)
-                db.session.flush()
+                db.session.flush()  # Guarda el autor temporalmente para obtener su ID
 
             # Verificar si el periódico ya existe en la base de datos
             newspaper = Newspaper.query.filter_by(name=source_name).first()
             if not newspaper:
                 newspaper = Newspaper(name=source_name)
                 db.session.add(newspaper)
-                db.session.flush()
+                db.session.flush()  # Guarda el periódico temporalmente para obtener su ID
 
             # Crear el nuevo artículo
             new_article = Article(
@@ -790,20 +799,20 @@ def get_Api_Article():
                 published_date=published_at,
                 source=url,
                 link=url,
-                author_id=author.id,
-                newspaper_id=newspaper.id,
+                author_id=author.id,  # Asociar el ID del autor
+                newspaper_id=newspaper.id,  # Asociar el ID del periódico
                 category_id=1  # Suponiendo que tienes una categoría fija por ahora
             )
 
             db.session.add(new_article)
 
-        db.session.commit()  # Confirmamos todos los cambios
-        return jsonify(message="Datos actualizados correctamente"), 201
+        db.session.commit()  # Confirmar todos los cambios
+        return jsonify(message="Artículos creados exitosamente"), 201
 
     except Exception as e:
-        db.session.rollback()  # En caso de error, deshacemos cualquier cambio
+        db.session.rollback()  # Deshacer cambios en caso de error
+        print(f"Error al procesar la solicitud: {str(e)}")
         return jsonify({'error': 'Error al procesar la solicitud: ' + str(e)}), 500
-
 
 @api.route('/article/<int:article_id>/category', methods=['PUT'])
 def update_article_category(article_id):
