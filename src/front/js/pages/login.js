@@ -24,7 +24,7 @@ const Login = () => {
     };
 
     return (
-        <div className="container mt-5 bg-black">
+        <div className="container mt-5 bg-black w-25">
             <h2 className="text-center text-white">Iniciar Sesión</h2>
             <form onSubmit={handleSubmit} className="mt-4 bg-dark p-4 rounded">
                 <div className="mb-3">
@@ -49,7 +49,7 @@ const Login = () => {
                         required
                     />
                 </div>
-                <button type="submit" className="btn btn-primary">Iniciar Sesión</button>
+                <button type="submit" className="btn btn-primary w-100">Iniciar Sesión</button>
             </form>
             <p className="mt-3 text-center text-white">
                 ¿No tienes una cuenta?{" "}

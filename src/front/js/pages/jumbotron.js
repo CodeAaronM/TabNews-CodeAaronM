@@ -25,53 +25,56 @@ export const Jumbotron = () => {
                         <div className="product-device product-device-2 shadow-sm d-none d-md-block"></div>
                     </div>
 
-                    <div className="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3 row">
-                        <div className="text-bg-dark p-0 text-center overflow-hidden col-6">
+                    <div className="container-fluid row p-0 m-0 mb-5">
+                        <div className="text-bg-dark p-0 text-center overflow-hidden col-6 border border-black pb-2">
                             <div className="my-3 py-3">
-                                <h2 className="display-5">Another headline</h2>
-                                <p className="lead">And an even wittier subheading.</p>
+                                <h2 className="display-5">Noticias actualizadas!</h2>
+                                <p className="lead">Explora las noticias del momento</p>
                             </div>
-                            <div className="bg-body-tertiary shadow-sm mx-auto" style={{width: "80%", height: "300px", borderradius: "21px 21px 0 0"}}></div>
+                           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdp4scwPo29nBQkoGBNgw7nVPZ8WYcpt_GUw&s" style={{width: "80%", height: "300px", borderradius: "21px 21px 0 0"}}/>
                         </div>
-                        <div className="text-bg-dark p-0 text-center overflow-hidden col-6">
+                        <div className="text-bg-dark p-0 text-center overflow-hidden col-6 border border-black pb-2">
                             <div className="my-3 py-3">
-                                <h2 className="display-5">Another headline</h2>
-                                <p className="lead">And an even wittier subheading.</p>
+                                <h2 className="display-5">Filtra tus noticias!</h2>
+                                <p className="lead">Mira solo lo que quieres ver</p>
                             </div>
-                            <div className="bg-body-tertiary shadow-sm mx-auto" style={{width: "80%", height: "300px", borderradius: "21px 21px 0 0"}}></div>
+                            <img src="https://cmdgroup.es/wp-content/uploads/2017/04/content-curation-2-300x246.jpg" style={{width: "80%", height: "300px", borderradius: "21px 21px 0 0"}}/>
                         </div>
                     </div>
 
-                    <div className="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3 row">
-                        <div className="text-bg-dark p-0 text-center overflow-hidden col-6">
+                    <div className="container-fluid row p-0 m-0 mb-5">
+                        <div className="text-bg-dark p-0 text-center overflow-hidden col-6 border border-black pb-2">
                             <div className="my-3 py-3">
-                                <h2 className="display-5">Another headline</h2>
-                                <p className="lead">And an even wittier subheading.</p>
+                                <h2 className="display-5">Crea tu propia cuenta!</h2>
+                                <p className="lead">Registrate en solo 2 minutos</p>
                             </div>
-                            <div className="bg-body-tertiary shadow-sm mx-auto" style={{width: "80%", height: "300px", borderradius: "21px 21px 0 0"}}></div>
+                            <img src="https://josefacchin.com/wp-content/uploads/2019/12/iniciar-sesion-twitter.png" style={{width: "80%", height: "300px", borderradius: "21px 21px 0 0"}}/>
                         </div>
-                        <div className="text-bg-dark p-0 text-center overflow-hidden col-6">
+                        <div className="text-bg-dark p-0 text-center overflow-hidden col-6 border border-black pb-2">
                             <div className="my-3 py-3">
-                                <h2 className="display-5">Another headline</h2>
-                                <p className="lead">And an even wittier subheading.</p>
+                                <h2 className="display-5">Personaliza tus preferencias!</h2>
+                                <p className="lead">se guardaran tus preferencias cuando vuelvas</p>
                             </div>
-                            <div className="bg-body-tertiary shadow-sm mx-auto" style={{width: "80%", height: "300px", borderradius: "21px 21px 0 0"}}></div>
+                            <img src="https://www.logicommerce.com/es/wp-content/uploads/sites/4/shutterstock_2156724909-1024x769.jpg" style={{width: "80%", height: "300px", borderradius: "21px 21px 0 0"}}/>
                         </div>
                     </div>
-                    <div className="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3 row">
-                        <div className="text-bg-dark p-0 text-center overflow-hidden col-6">
+
+
+                                      <div className="container-fluid row p-0 m-0 mb-5">
+                        <div className="text-bg-dark p-0 text-center overflow-hidden col-6 border border-black pb-2">
                             <div className="my-3 py-3">
-                                <h2 className="display-5">Another headline</h2>
-                                <p className="lead">And an even wittier subheading.</p>
+                                <h2 className="display-5">Fuentes verificables!
+                                </h2>
+                                <p className="lead">Redireccionate con un solo click</p>
                             </div>
-                            <div className="bg-body-tertiary shadow-sm mx-auto" style={{width: "80%", height: "300px", borderradius: "21px 21px 0 0"}}></div>
+                            <img src="https://www.telemundo.com/sites/nbcutelemundo/files/images/article/cover/2021/04/21/tverifica_illustration_v6.png" style={{width: "80%", height: "300px", borderradius: "21px 21px 0 0"}}/>
                         </div>
-                        <div className="text-bg-dark p-0 text-center overflow-hidden col-6">
+                        <div className="text-bg-dark p-0 text-center overflow-hidden col-6 border border-black pb-2">
                             <div className="my-3 py-3">
-                                <h2 className="display-5">Another headline</h2>
-                                <p className="lead">And an even wittier subheading.</p>
+                                <h2 className="display-5">Descripciones breves!</h2>
+                                <p className="lead">Enterate rapidamente de lo que trata la noticia</p>
                             </div>
-                            <div className="bg-body-tertiary shadow-sm mx-auto" style={{width: "80%", height: "300px", borderradius: "21px 21px 0 0"}}></div>
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3cS5SlqvMiBOJV3Mx5HKbSVBrnN_iNeZcNA&s" style={{width: "80%", height: "300px", borderradius: "21px 21px 0 0"}}/>
                         </div>
                     </div>
                     </>
