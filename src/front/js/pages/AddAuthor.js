@@ -45,7 +45,7 @@ export const AddAuthor = () => {
 	};
 
 	return (
-		<div className="text-center mt-5">
+		<div className="text-center mt-5 bg-light">
 			<h1>{id ? "Edit Author" : "Add New Author"}</h1> {/* Título dinámico dependiendo si estamos en modo edición o no */}
 
 			<form>

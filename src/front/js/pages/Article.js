@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/home.css";
 import { CardArticle } from "../component/cardArticle";
 import { Link } from "react-router-dom";
 
@@ -9,47 +8,52 @@ export const Article = () => {
 	
 	useEffect(() => {
 		actions.getDataArticle();
-	}, []);
+	}, [actions]);
 	
 	return (
-		<div className="text-center mt-5">
-			<h1>Hello Rigo!!</h1>
-			<h1 className="text-danger">Articles</h1>
+		<div className="container-fluid mt-5 bg-black text-white p-4">
+			<h1 className="text-danger text-center">Artículos</h1>
 			
-			<Link to="/administratorHomePage">
-				<h2>Get back to home</h2>
-			</Link>
-			
-			<Link to="/AddArticle">
-				<button>Create Article</button>
-			</Link>
+			<div className="text-center mb-4">
+				<Link to="/administratorHomePage" className="btn btn-outline-light mx-2">
+					Volver a Inicio
+				</Link>
+				<Link to="/AddArticle" className="btn btn-primary mx-2">
+					Crear Artículo
+				</Link>
+			</div>
 
-			<div className="row d-flex flex-nowrap my-5" style={{ overflowX: "scroll" }}>
-				{store.Articles.map((article, index) => (
-					<CardArticle
-						key={index}
-						title={article.title}
-						content={article.content}
-						image={article.image}
-						published_date={article.published_date}
-						source={article.source}
-						link={article.link}
-						author={article.author}
-						newspaper={article.newspaper}
-						category={article.category}
-						id={article.id}
-					/>
-				))}
+			<div className="row justify-content-center my-5">
+				{store.Articles.length > 0 ? (
+					store.Articles.map((article, index) => (
+						<div className="col-md-4 mb-4" key={index}>
+							<CardArticle
+								title={article.title}
+								content={article.content}
+								image={article.image}
+								published_date={article.published_date}
+								source={article.source}
+								link={article.link}
+								author={article.author}
+								newspaper={article.newspaper}
+								category={article.category}
+								id={article.id}
+							/>
+						</div>
+					))
+				) : (
+					<p>No se encontraron artículos.</p>
+				)}
 			</div>
 
 			<div className="alert alert-info">
-				{store.message || "Loading message from the backend (make sure your Python backend is running)..." }
+				{store.message || "Cargando mensaje desde el backend (asegúrate de que tu backend de Python esté corriendo)..." }
 			</div>
 
-			<p>
-				This boilerplate comes with lots of documentation:{" "}
-				<a href="https://start.4geeksacademy.com/starters/react-flask">
-					Read documentation
+			<p className="text-center">
+				Este boilerplate viene con mucha documentación:{" "}
+				<a href="https://start.4geeksacademy.com/starters/react-flask" className="text-light">
+					Leer documentación
 				</a>
 			</p>
 		</div>

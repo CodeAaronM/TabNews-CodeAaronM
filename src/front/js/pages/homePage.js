@@ -86,7 +86,7 @@ export const HomePage = () => {
             )}
 
             {showPreferences && (
-                <div className="preferences-modal p-4 text-start bg-dark text-white rounded shadow">
+                <div className="p-4 text-start bg-dark text-light rounded shadow">
                     <h3>Selecciona tus categorías preferidas</h3>
                     {store.categories.map((category, index) => (
                         <div key={index} className="form-check">
@@ -108,26 +108,27 @@ export const HomePage = () => {
                 </div>
             )}
 
-            <div className="row justify-content-evenly my-5">
+            <div className="row justify-content-center my-5">
                 {filteredArticles.length > 0 ? (
                     filteredArticles.map((article, index) => (
-                        <CardArticle
-                            key={index}
-                            title={article.title}
-                            content={article.content}
-                            image={article.image}
-                            published_date={article.published_date}
-                            source={article.source}
-                            link={article.link}
-                            author={article.author}
-                            newspaper={article.newspaper}
-                            category={article.category}
-                            id={article.id}
-                            isAdmin={false}
-                        />
+                        <div className="col-md-4 mb-4" key={index}>
+                            <CardArticle
+                                title={article.title}
+                                content={article.content}
+                                image={article.image}
+                                published_date={article.published_date}
+                                source={article.source}
+                                link={article.link}
+                                author={article.author}
+                                newspaper={article.newspaper}
+                                category={article.category}
+                                id={article.id}
+                                isAdmin={false}
+                            />
+                        </div>
                     ))
                 ) : (
-                    <p>No se encontraron artículos para las categorías seleccionadas.</p>
+                    <p className="text-light">No se encontraron artículos para las categorías seleccionadas.</p>
                 )}
             </div>
         </div>

@@ -30,7 +30,7 @@ export const AddCategory = () => {
     };
 
     return (
-        <div className="container">
+        <div className="container bg-light">
             <h1 className="display-4">Add New Category</h1>
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="categoryName">

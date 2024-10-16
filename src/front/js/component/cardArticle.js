@@ -38,25 +38,25 @@ export const CardArticle = (props) => {
   };
 
   return (
-    <div className="card my-4 col-4 p-2 bg-black" style={{ width: "30%" }}>
+    <div className="card my-2 bg-dark text-light">
       {/* Al hacer clic en la imagen, redirige al enlace */}
       <img
         src={props.image || rigoImage}
         className="card-img-top"
         alt={props.title}
         onClick={handleRedirect}
-        style={{ cursor: "pointer", height:"350px" }} // Cambiar el cursor a "pointer" para indicar que es clicable
+        style={{ cursor: "pointer", height: "250px", objectFit: "cover" }} // Ajustar el tamaño de la imagen
       />
-      <div className="card-body text-light">
+      <div className="card-body">
         {props.isAdmin && (
-          <>
+          <div className="d-flex justify-content-between">
             <Link to="/AddArticle">
               <button type="button" className="btn btn-outline-light text-secondary" onClick={handleEdit}>
-                <i className="fa-solid fa-pencil"></i>
+                <i className="fa-solid fa-pencil"></i> Editar
               </button>
             </Link>
-            <button type="button" className="btn btn-primary" onClick={() => actions.deleteArticle(props.id)}>
-              DELETE
+            <button type="button" className="btn btn-danger" onClick={() => actions.deleteArticle(props.id)}>
+              Borrar
             </button>
             <button type="button" className="btn btn-warning" onClick={() => setIsCategoryDropdownVisible(!isCategoryDropdownVisible)}>
               Cambiar Categoría
@@ -74,17 +74,17 @@ export const CardArticle = (props) => {
                 ))}
               </div>
             )}
-          </>
+          </div>
         )}
         {/* Al hacer clic en el título, redirige al enlace */}
-        <h5 className="card-title" onClick={handleRedirect} style={{ cursor: "pointer" }}>
-           {props.title}
+        <h5 className="card-title mt-3" onClick={handleRedirect} style={{ cursor: "pointer" }}>
+          {props.title}
         </h5>
-        <p className="card-text m-0"> {props.content}</p>
-        <div className=" row pt-4">
-        <p className="card-text m-0 p-0 fs-6 col fw-light lh-1 align-text-bottom text-secondary">published_date: {props.published_date}</p>
-        <p className="card-text m-0 p-0 fs-6 col fw-light lh-1 align-text-bottom text-secondary">author: {props.author.name}</p>
-        <p className="card-text m-0 p-0 fs-6 col fw-light lh-1 align-text-bottom text-secondary">newspaper: {props.newspaper.name}</p>
+        <p className="card-text">{props.content}</p>
+        <div className="row">
+          <p className="col fw-light text-secondary">Fecha: {props.published_date}</p>
+          <p className="col fw-light text-secondary">Autor: {props.author.name}</p>
+          <p className="col fw-light text-secondary">Periódico: {props.newspaper.name}</p>
         </div>
       </div>
     </div>

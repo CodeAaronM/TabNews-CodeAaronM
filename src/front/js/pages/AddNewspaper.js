@@ -48,7 +48,7 @@ export const AddNewspaper = () => {
 	};
 
 	return (
-		<div className="text-center mt-5">
+		<div className="text-center mt-5 bg-light">
 			<h1>{id ? "Edit Newspaper" : "Add New Newspaper"}</h1> {/* Título dinámico dependiendo si estamos en modo edición o no */}
 
 			<form>
