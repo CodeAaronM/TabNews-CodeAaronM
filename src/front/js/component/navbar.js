@@ -11,7 +11,7 @@ export const Navbar = () => {
     actions.logout();
     navigate("/login");
   };
-
+  const isOnHome = location.pathname === "/home";
   const isOnHomePage = location.pathname === "/homePage";
   const isOnAdminPage = location.pathname === "/AdministratorHomePage";
 
@@ -22,8 +22,11 @@ export const Navbar = () => {
           <i className="fa-solid fa-kiwi-bird fs-1"></i> TapNews
         </Link>
         <div className="ml-auto">
+        {(isOnHome) &&(<Link to="/login" className="text-light mx-5 m-2">
+        <button className="btn btn-primary">Iniciar Sesión</button> 
+              </Link>)}
           {(isOnHomePage || isOnAdminPage) && (
-            <button className="btn btn-danger" onClick={handleLogout}>
+            <button className="btn btn-primary" onClick={handleLogout}>
               Cerrar Sesión
             </button>
           )}

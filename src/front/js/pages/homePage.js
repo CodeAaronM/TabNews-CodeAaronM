@@ -61,7 +61,7 @@ export const HomePage = () => {
                     <FontAwesomeIcon icon={faFilter} /> {showFilters ? "Ocultar Filtros" : "Filtros"}
                 </button>
 
-                <button onClick={() => setShowPreferences(!showPreferences)} className="btn btn-outline-warning mx-2">
+                <button onClick={() => setShowPreferences(!showPreferences)} className="btn btn-outline-primary mx-2">
                     <FontAwesomeIcon icon={faStar} /> {showPreferences ? "Ocultar Preferencias" : "Preferencias"}
                 </button>
             </div>
