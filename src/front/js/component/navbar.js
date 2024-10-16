@@ -15,7 +15,7 @@ export const Navbar = () => {
 
     // Verifica si la ruta actual es HomePage o AdministratorHomePage
     const isOnHomePage = location.pathname === "/homePage";
-    const isOnAdminPage = location.pathname === "/administratorHomePage";
+    const isOnAdminPage = location.pathname === "/AdministratorHomePage";
 
     return (
         <nav className="navbar navbar-light bg-dark">

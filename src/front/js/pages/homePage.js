@@ -2,6 +2,8 @@ import React, { useEffect, useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import { CardArticle } from "../component/cardArticle";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Asegúrate de instalar la biblioteca de iconos FontAwesome
+import { faFilter, faStar } from '@fortawesome/free-solid-svg-icons'; // Importa los iconos que desees
 
 export const HomePage = () => {
     const { store, actions } = useContext(Context);
@@ -52,37 +54,39 @@ export const HomePage = () => {
 
     return (
         <div className="container-fluid mt-5 bg-black">
-            <h1 className="text-primary text-center">Noticias Personalizadas</h1>
+            <h1 className="text-light text-center">Noticias Personalizadas</h1>
 
             <div className="my-4 text-center">
-                <button onClick={() => setShowFilters(!showFilters)} className="btn btn-info">
-                    {showFilters ? "Ocultar Filtros" : "Filtros"}
+                <button onClick={() => setShowFilters(!showFilters)} className="btn btn-outline-light mx-2">
+                    <FontAwesomeIcon icon={faFilter} /> {showFilters ? "Ocultar Filtros" : "Filtros"}
                 </button>
 
-                <button onClick={() => setShowPreferences(!showPreferences)} className="btn btn-primary mx-2">
-                    {showPreferences ? "Ocultar Preferencias" : "Preferencias"}
+                <button onClick={() => setShowPreferences(!showPreferences)} className="btn btn-outline-warning mx-2">
+                    <FontAwesomeIcon icon={faStar} /> {showPreferences ? "Ocultar Preferencias" : "Preferencias"}
                 </button>
             </div>
 
             {showFilters && (
                 <div className="my-4 text-center">
-                    <button onClick={() => setSelectedCategories([])} className="btn btn-secondary mx-2">
-                        Todas
-                    </button>
-                    {store.categories.map((category, index) => (
-                        <button
-                            key={index}
-                            onClick={() => handleCategoryChange(category.id)}
-                            className={`btn mx-2 ${selectedCategories.includes(category.id) ? "btn-primary" : "btn-secondary"}`}
-                        >
-                            {category.name}
+                    <div className="btn-group" role="group" aria-label="Basic outlined example">
+                        <button onClick={() => setSelectedCategories([])} className="btn btn-outline-secondary mx-2">
+                            Todas
                         </button>
-                    ))}
+                        {store.categories.map((category, index) => (
+                            <button
+                                key={index}
+                                onClick={() => handleCategoryChange(category.id)}
+                                className={`btn mx-2 ${selectedCategories.includes(category.id) ? "btn-primary" : "btn-outline-secondary"}`}
+                            >
+                                {category.name}
+                            </button>
+                        ))}
+                    </div>
                 </div>
             )}
 
             {showPreferences && (
-                <div className="preferences-modal p-4 text-start bg-black text-white">
+                <div className="preferences-modal p-4 text-start bg-dark text-white rounded shadow">
                     <h3>Selecciona tus categorías preferidas</h3>
                     {store.categories.map((category, index) => (
                         <div key={index} className="form-check">
