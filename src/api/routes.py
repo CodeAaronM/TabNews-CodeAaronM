@@ -63,7 +63,7 @@ def add_new_user():
     if existing_user:
         return jsonify({"error": "El correo ya está registrado"}), 400
 
-    hashed_password = bcrypt.generate_password_hash(request_body_user["password"]).decode('utf-8')
+    hashed_password = request_body_user["password"]
 
     new_user = User(
         first_name=request_body_user["first_name"],
@@ -104,7 +104,7 @@ def update_user(user_id):
             return jsonify({"error": "El correo ya está en uso por otro usuario"}), 400
         user.email = request_body_user["email"]
     if "password" in request_body_user:
-        user.password = bcrypt.generate_password_hash(request_body_user["password"]).decode('utf-8')
+        user.password = request_body_user["password"]
 
     db.session.commit()
 
@@ -357,7 +357,7 @@ def signup():
     if existing_user:
         return jsonify({"error": "El correo ya está registrado"}), 400
 
-    hashed_password = bcrypt.generate_password_hash(request_body_user["password"]).decode('utf-8')
+    hashed_password = request_body_user["password"]
 
     new_user = User(
         first_name=request_body_user["first_name"],

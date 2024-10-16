@@ -24,7 +24,7 @@ const AdministratorLogin = () => {
     };
 
     return (
-        <div className="container mt-5 bg-black">
+        <div className="container mt-5 bg-black w-25">
             <h2 className="text-center text-white">Iniciar Sesión</h2>
             <form onSubmit={handleSubmit} className="mt-4 bg-dark p-4 rounded">
                 <div className="mb-3">
