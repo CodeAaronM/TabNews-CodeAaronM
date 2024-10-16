@@ -38,25 +38,31 @@ export const AdministratorHomePage = () => {
             <button className="btn btn-primary mb-4" onClick={actions.getArticleApiData}>Traer datos de API</button>
 
             <div className="my-4 text-center">
-                <button onClick={() => setShowFilters(!showFilters)} className="btn btn-info">
+                <button onClick={() => setShowFilters(!showFilters)} className="btn btn-primary">
                     {showFilters ? "Ocultar Filtros" : "Mostrar Filtros"}
                 </button>
             </div>
 
             {showFilters && (
                 <div className="my-4 text-center">
-                    <button onClick={() => setSelectedCategories([])} className="btn btn-secondary mx-2">Todas</button>
+                    <button onClick={() => setSelectedCategories([])} className="btn btn-primary mx-2">Todas</button>
                     {store.categories.map((category, index) => (
                         <button
                             key={index}
                             onClick={() => handleCategoryChange(category.name)}
-                            className={`btn mx-2 ${selectedCategories.includes(category.name) ? "btn-success" : "btn-primary"}`}
+                            className={`btn mx-2 ${selectedCategories.includes(category.name) ? "btn-primary" : "btn-primary"}`}
                         >
                             {category.name}
                         </button>
                     ))}
                 </div>
             )}
+            <div className="text-center my-4">
+                <Link to="/author" className="btn btn-primary mx-2">Ver autores</Link>
+                <Link to="/newspaper" className="btn btn-primary mx-2">Ir a Periódicos</Link>
+                <Link to="/category" className="btn btn-primary mx-2">Ver Categorías</Link>
+                <Link to="/article" className="btn btn-primary mx-2">Ir a Artículos</Link>
+            </div>
 
             <div className="row justify-content-center my-5">
                 {filteredArticles.length > 0 ? (
@@ -83,12 +89,6 @@ export const AdministratorHomePage = () => {
             </div>
 
             {/* Navegación a otras páginas */}
-            <div className="text-center my-4">
-                <Link to="/author" className="btn btn-primary mx-2">Ver autores</Link>
-                <Link to="/newspaper" className="btn btn-primary mx-2">Ir a Periódicos</Link>
-                <Link to="/category" className="btn btn-primary mx-2">Ver Categorías</Link>
-                <Link to="/article" className="btn btn-primary mx-2">Ir a Artículos</Link>
-            </div>
         </div>
     );
 };

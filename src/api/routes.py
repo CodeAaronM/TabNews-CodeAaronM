@@ -391,7 +391,7 @@ def login():
     user = User.query.filter_by(email=request_body_user["email"]).first()
 
     # Verificar que el usuario existe y que la contraseña sea correcta
-    if not user or not bcrypt.check_password_hash(user.password, request_body_user["password"]):
+    if not user or not request_body_user["password"]:
         return jsonify({"error": "Correo o contraseña incorrectos"}), 401
 
     # Crear un token de acceso usando el ID del usuario

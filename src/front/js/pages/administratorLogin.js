@@ -53,7 +53,7 @@ const AdministratorLogin = () => {
             </form>
             <p className="mt-3 text-center text-white">
                 ¿No tienes una cuenta?{" "}
-                <Link to="/administratorRegister" className="text-info">Regístrate aquí</Link>
+                <Link to="/administratorRegister" className="text-primary">Regístrate aquí</Link>
             </p>
         </div>
     );

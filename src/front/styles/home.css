@@ -5,9 +5,11 @@
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages).
 */
-.bg-purple {
-    background-color: blueviolet;
-}
-.text-purple {
-    color: blueviolet;
+
+.jumbotron-background {
+    background-image: url('https://www.solofondos.com/wp-content/uploads/2015/11/fondos-abstractos-para-paginas-web-para-fondo-celular-en-hd-12.jpg');
+    background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
+    background-position: center; /* Centra la imagen en el contenedor */ /* Asegura que ocupe toda la altura de la ventana */
+    position: relative; /* Posicionamiento relativo para contener elementos internos */
+    overflow: hidden; /* Oculta cualquier desbordamiento */
 }
