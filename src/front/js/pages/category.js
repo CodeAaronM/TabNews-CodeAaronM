@@ -40,7 +40,7 @@ export const Category = () => {
     };
 
     return (
-        <div className="container">
+        <div className="container bg-light">
             <h1 className="display-4">Categories</h1>
             <Link to="/add-category">
                 <Button variant="primary" className="mb-3">

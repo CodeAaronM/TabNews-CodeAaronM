@@ -18,7 +18,7 @@ export const AdministratorHomePage = () => {
             actions.getDataArticle();
             actions.loadCategories();
         }
-    }, []);
+    }, [actions, navigate]);
 
     const handleCategoryChange = (category) => {
         if (selectedCategories.includes(category)) {
@@ -35,16 +35,16 @@ export const AdministratorHomePage = () => {
     return (
         <div className="container-fluid mt-5 bg-black text-white p-4">
             <h1 className="text-danger text-center">Administra tus noticias</h1>
-            <button className="btn btn-primary" onClick={actions.getArticleApiData}>Traer datos de API</button>
+            <button className="btn btn-primary mb-4" onClick={actions.getArticleApiData}>Traer datos de API</button>
 
-            <div className="my-4">
+            <div className="my-4 text-center">
                 <button onClick={() => setShowFilters(!showFilters)} className="btn btn-info">
                     {showFilters ? "Ocultar Filtros" : "Mostrar Filtros"}
                 </button>
             </div>
 
             {showFilters && (
-                <div className="my-4">
+                <div className="my-4 text-center">
                     <button onClick={() => setSelectedCategories([])} className="btn btn-secondary mx-2">Todas</button>
                     {store.categories.map((category, index) => (
                         <button
@@ -58,45 +58,36 @@ export const AdministratorHomePage = () => {
                 </div>
             )}
 
-            <div className="row justify-content-evenly my-5">
-                {filteredArticles.map((article, index) => (
-                    <CardArticle
-                        key={index}
-                        title={article.title}
-                        content={article.content}
-                        image={article.image}
-                        published_date={article.published_date}
-                        source={article.source}
-                        link={article.link}
-                        author={article.author}
-                        newspaper={article.newspaper}
-                        category={article.category}
-                        id={article.id}
-                        isAdmin={true} // Indica que es la vista de administrador
-                    />
-                ))}
+            <div className="row justify-content-center my-5">
+                {filteredArticles.length > 0 ? (
+                    filteredArticles.map((article, index) => (
+                        <div className="col-md-4 mb-4" key={index}>
+                            <CardArticle
+                                title={article.title}
+                                content={article.content}
+                                image={article.image}
+                                published_date={article.published_date}
+                                source={article.source}
+                                link={article.link}
+                                author={article.author}
+                                newspaper={article.newspaper}
+                                category={article.category}
+                                id={article.id}
+                                isAdmin={true} // Indica que es la vista de administrador
+                            />
+                        </div>
+                    ))
+                ) : (
+                    <p>No se encontraron artículos para las categorías seleccionadas.</p>
+                )}
             </div>
 
             {/* Navegación a otras páginas */}
-            <div className="ml-auto mb-2">
-                <Link to="/author">
-                    <button className="btn btn-primary">Ver autores</button>
-                </Link>
-            </div>
-            <div className="ml-auto mb-2">
-                <Link to="/newspaper">
-                    <button className="btn btn-primary">Ir a Periódicos</button>
-                </Link>
-            </div>
-            <div className="ml-auto mb-2">
-                <Link to="/category">
-                    <button className="btn btn-primary">Ver Categorías</button>
-                </Link>
-            </div>
-            <div className="ml-auto mb-2">
-                <Link to="/article">
-                    <button className="btn btn-primary">Ir a Artículos</button>
-                </Link>
+            <div className="text-center my-4">
+                <Link to="/author" className="btn btn-primary mx-2">Ver autores</Link>
+                <Link to="/newspaper" className="btn btn-primary mx-2">Ir a Periódicos</Link>
+                <Link to="/category" className="btn btn-primary mx-2">Ver Categorías</Link>
+                <Link to="/article" className="btn btn-primary mx-2">Ir a Artículos</Link>
             </div>
         </div>
     );

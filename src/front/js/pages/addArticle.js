@@ -78,7 +78,7 @@ export const AddArticle = () => {
     };
 
     return (
-        <div className="text-center mt-5">
+        <div className="text-center mt-5 bg-light">
             <h1>{id ? "Edit Article" : "Add New Article"}</h1>
 
             <form>
@@ -229,25 +229,6 @@ export const AddArticle = () => {
             <Link to="/administratorHomePage">
                 <h2>Get back to home</h2>
             </Link>
-
-            <div className="row d-flex flex-nowrap my-5" style={{ overflowX: "scroll" }}>
-                {store.Articles.map((article, index) => (
-					<CardArticle
-                    key={index}
-                    title={article.title}
-                    content={article.content}
-                    image={article.image}
-                    published_date={article.published_date}
-                    source={article.source}
-                    link={article.link}
-                    author={article.author}
-                    newspaper={article.newspaper}
-                    category={article.category}
-                    id={article.id}
-                />
-                ))}
-            </div>
-
             <div className="alert alert-info">
                 {store.message || "Loading message from the backend (make sure your Python backend is running)..."}
             </div>
