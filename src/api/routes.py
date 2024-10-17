@@ -143,6 +143,19 @@ def get_category(category_id):
 
     return jsonify(category.serialize()), 200
 
+def get_next_available_category_id():
+    """Busca el siguiente ID disponible en la tabla 'Category'."""
+    used_ids = [cat.id for cat in Category.query.with_entities(Category.id).all()]
+    if not used_ids:
+        return 1  # Si no hay categorías, asigna el ID 1
+    used_ids.sort()
+    
+    # Busca el primer ID disponible
+    for i in range(1, len(used_ids) + 1):
+        if i != used_ids[i - 1]:  # Cuando el ID no coincida, ese es el siguiente ID disponible
+            return i
+    return len(used_ids) + 1  # Si todos los IDs están ocupados en secuencia, asigna el siguiente
+
 @api.route('/category', methods=['POST'])
 def add_new_category():
     request_body_category = request.get_json()
@@ -150,7 +163,11 @@ def add_new_category():
     if "name" not in request_body_category:
         return jsonify({"error": "El nombre de la categoría es obligatorio"}), 400
 
+    # Obtener el siguiente ID disponible para la categoría
+    next_id = get_next_available_category_id()
+
     new_category = Category(
+        id=next_id,  # Asignamos el ID manualmente
         name=request_body_category["name"],
         description=request_body_category.get("description", None)
     )
@@ -159,7 +176,7 @@ def add_new_category():
     db.session.commit()
 
     response_body = {
-        "msg": "Nueva categoría añadida correctamente"
+        "msg": f"Nueva categoría añadida correctamente con ID {new_category.id}"
     }
 
     return jsonify(response_body), 201
@@ -193,6 +210,7 @@ def delete_category(category_id):
     db.session.commit()
 
     return jsonify({'message': f'Categoría con id {category_id} ha sido borrada'}), 200
+
 
 ############# C.R.U.D USER CATEGORY ##############
 
