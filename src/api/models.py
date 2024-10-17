@@ -123,7 +123,7 @@ class Article(db.Model):
     image = db.Column(db.String(255))
     published_date = db.Column(db.String(255))
     source = db.Column(db.String(255))
-    link = db.Column(db.String)
+    link = db.Column(db.String(255))
 
     # Claves foráneas para conectar con Author, Newspaper y Category
     author_id = db.Column(db.Integer, db.ForeignKey('author.id'), nullable=True)
