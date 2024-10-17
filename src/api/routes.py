@@ -746,7 +746,7 @@ def get_Api_Article():
         data = response.json()
 
         # Establecer valores predeterminados para la imagen y la descripción
-        default_image = "https://as2.ftcdn.net/v2/jpg/02/51/95/53/1000_F_251955356_FAQH0U1y1TZw3ZcdPGybwUkH90a3VAhb.jpg"  # URL de imagen por defecto
+        default_image = "https://t3.ftcdn.net/jpg/03/49/45/70/360_F_349457036_XWvovNpNk79ftVg4cIpBhJurdihVoJ2B.jpg"  # URL de imagen por defecto
         default_description = "Descripción no disponible en este momento."  # Descripción por defecto
 
         for article in data.get('articles', []):
@@ -767,7 +767,7 @@ def get_Api_Article():
             title = title[:255]
             description = description[:65535]
             url_to_image = url_to_image[:255]
-            url = url[:255]
+            url = url[:65535]
             author_name = author_name[:100]
             source_name = source_name[:255]
 
