@@ -767,7 +767,7 @@ def get_Api_Article():
             title = title[:255]
             description = description[:65535]
             url_to_image = url_to_image[:255]
-            url = url[:65535]
+            url = url[:255]
             author_name = author_name[:100]
             source_name = source_name[:255]
 
