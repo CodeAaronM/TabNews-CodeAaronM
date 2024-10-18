@@ -9,7 +9,6 @@ import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 import { Category } from "./pages/category";
 import { AddCategory } from "./pages/addCategory";
-import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { EditCategory } from "./pages/editCategory";
 import { CategoryDetails } from "./pages/categoryDetails";
@@ -28,6 +27,7 @@ import { AdministratorHomePage } from "./pages/administratorHomePage";
 import { AdministratorProtectedRoute } from "./component/administratorProtectedRoute";
 import AdministratorLogin from "./pages/administratorLogin";
 import AdministratorRegister from "./pages/administratorRegister";
+import { Navbar } from "./component/navbar";
 
 import { Jumbotron } from "./pages/jumbotron";
 //create your first component
